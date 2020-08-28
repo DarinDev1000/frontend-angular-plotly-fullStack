@@ -11,6 +11,7 @@ export class GraphComponent implements OnInit {
 
   public data: any;
   public layout: any;
+  public config: any;
 
   /* The plot target container. */
   @ViewChild('plotContainer') plotContainer: ElementRef;
@@ -68,7 +69,6 @@ export class GraphComponent implements OnInit {
           font: { size: 13, color: "#cccccc" }
         },
         type: "date",
-        title: 'demo',
         side: 'right',
         linecolor: '#FFF',
         linewidth: 50
@@ -128,8 +128,14 @@ export class GraphComponent implements OnInit {
       }
     ]
 
+    // the config
+    this.config = {
+      staticPlot: false,
+      responsive: true
+    }
+
     if (this.data !== undefined && this.layout) {
-      Plotly.newPlot(this.plotContainer.nativeElement, this.data, this.layout, { staticPlot: false });
+      Plotly.newPlot(this.plotContainer.nativeElement, this.data, this.layout, this.config);
     } else {
       console.warn('The data or the layout are not defined');
     }
