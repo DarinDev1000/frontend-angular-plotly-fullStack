@@ -15,6 +15,8 @@ export class ProductionByWeekGraphComponent implements OnInit {
   public layout: any;
   public config: any;
 
+  public getDataResponse: any;
+
   /* The plot target container. */
   @ViewChild('plotContainer') plotContainer: ElementRef;
 
@@ -22,6 +24,9 @@ export class ProductionByWeekGraphComponent implements OnInit {
   constructor() { }
 
   async ngOnInit() {
+    try {
+      this.getDataResponse = this.getGraphFigure();
+    } catch (error) {}
   }
 
   async ngAfterViewInit() {
@@ -29,7 +34,7 @@ export class ProductionByWeekGraphComponent implements OnInit {
       this.initPlot();
     } catch (error) {}
     try {
-      this.figure = await this.getGraphFigure();
+      this.figure = await this.getDataResponse;
       this.initPlot();
     } catch (error) {}
   }
