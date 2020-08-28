@@ -26,17 +26,23 @@ export class ProductionByWeekGraphComponent implements OnInit {
   async ngOnInit() {
     try {
       this.getDataResponse = this.getGraphFigure();
-    } catch (error) {}
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   async ngAfterViewInit() {
     try {
       this.initPlot();
-    } catch (error) {}
+    } catch (error) {
+      console.error(error);
+    }
     try {
       this.figure = await this.getDataResponse;
       this.initPlot();
-    } catch (error) {}
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
