@@ -4,11 +4,11 @@ import axios from 'axios';
 declare const Plotly: any;
 
 @Component({
-  selector: 'app-production-by-week-graph',
-  templateUrl: './production-by-week-graph.component.html',
-  styleUrls: ['./production-by-week-graph.component.scss']
+  selector: 'app-production-by-month-graph',
+  templateUrl: './production-by-month-graph.component.html',
+  styleUrls: ['./production-by-month-graph.component.scss']
 })
-export class ProductionByWeekGraphComponent implements OnInit {
+export class ProductionByMonthGraphComponent implements OnInit {
 
   public figure: any;
   public data: any;
@@ -84,7 +84,7 @@ export class ProductionByWeekGraphComponent implements OnInit {
 
   async getGraphFigure() {
     try {
-      const response = await axios.get('http://localhost:5000/api/ppbw');
+      const response = await axios.get('http://localhost:5000/api/ppbm');
       console.log(response.data);
       return response.data;
     } catch (error) {

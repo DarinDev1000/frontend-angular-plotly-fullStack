@@ -11,6 +11,7 @@ import { Graph2Component } from './graph2/graph2.component';
 import { Graph3Component } from './graph3/graph3.component';
 import { GraphNativeComponent } from './graph-native/graph-native.component';
 import { ProductionByWeekGraphComponent } from './production-by-week-graph/production-by-week-graph.component';
+import { ProductionByMonthGraphComponent } from './production-by-month-graph/production-by-month-graph.component';
 
 PlotlyModule.plotlyjs = PlotlyJS;
 
@@ -21,7 +22,8 @@ PlotlyModule.plotlyjs = PlotlyJS;
     Graph2Component,
     Graph3Component,
     GraphNativeComponent,
-    ProductionByWeekGraphComponent
+    ProductionByWeekGraphComponent,
+    ProductionByMonthGraphComponent
   ],
   imports: [
     BrowserModule,
