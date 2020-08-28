@@ -1,14 +1,18 @@
 import { Component, OnInit, ViewChild, ElementRef, SimpleChanges } from '@angular/core';
 
+// import * as rm from 'typed-rest-client/RestClient';
+import axios from 'axios';
+
 declare const Plotly: any;
 
 @Component({
-  selector: 'app-graph-native',
-  templateUrl: './graph-native.component.html',
-  styleUrls: ['./graph-native.component.scss']
+  selector: 'app-production-by-week-graph',
+  templateUrl: './production-by-week-graph.component.html',
+  styleUrls: ['./production-by-week-graph.component.scss']
 })
-export class GraphNativeComponent implements OnInit {
+export class ProductionByWeekGraphComponent implements OnInit {
 
+  public figure: any;
   public data: any;
   public layout: any;
   public config: any;
@@ -16,13 +20,20 @@ export class GraphNativeComponent implements OnInit {
   /* The plot target container. */
   @ViewChild('plotContainer') plotContainer: ElementRef;
 
+
   constructor() { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    try {
+      this.initPlot();
+    } catch (error) {}
+    try {
+      this.figure = await this.getGraphFigure();
+      this.initPlot();
+    } catch (error) {}
   }
 
-  ngAfterViewInit() {
-    this.initPlot();
+  async ngAfterViewInit() {
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -46,33 +57,20 @@ export class GraphNativeComponent implements OnInit {
     // this.getTheme();
 
     // the layout.
-    this.layout = {
-      title: 'Responsive to window\'s size!',
-      font: {size: 18}
-    };
-
-    const trace1 = {
-      type: 'bar',
-      x: [1, 2, 3, 4],
-      y: [5, 10, 2, 8],
-      marker: {
-          color: '#C8A2C8',
-          line: {
-              width: 2.5
-          }
-      }
-    };
+    this.layout = this.figure.layout;
 
     // the data
-    this.data = [ trace1 ];
+    this.data = this.figure.data;
 
     // the config
-    this.config = {
-      staticPlot: false,
-      responsive: true
-    };
+    try {
+      this.config = this.figure.config;
+    } catch (error) {
+      this.config = {};
+    }
 
     if (this.data !== undefined && this.layout) {
+      // Plotly.newPlot(this.plotContainer.nativeElement, this.data, this.layout, this.config);
       Plotly.newPlot(this.plotContainer.nativeElement, this.data, this.layout, this.config);
     } else {
       console.warn('The data or the layout are not defined');
@@ -84,6 +82,16 @@ export class GraphNativeComponent implements OnInit {
   /** On resize this method triggers & resize the plot. */
   public onResize() {
     Plotly.Plots.resize(this.plotContainer.nativeElement);
+  }
+
+  async getGraphFigure() {
+    try {
+      const response = await axios.get('http://localhost:5000/api/ppbw');
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
 }
