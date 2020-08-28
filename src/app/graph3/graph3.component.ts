@@ -34,7 +34,7 @@ export class Graph3Component implements OnInit {
     layout: {
       autosize: true,
       // width: 800,
-      height: 800,
+      // height: 800,
       scene:{
         aspectmode: "manual",
         aspectratio: {
