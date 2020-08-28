@@ -1,5 +1,9 @@
 # FrontendAngularPlotlyFullStack
 
+https://stackblitz.com/edit/angular-plotly-custom?file=src%2Fapp%2Fcomponents%2Fplotly%2Fplotly.component.ts
+
+https://github.com/plotly/plotly-webpack
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.5.
 
 ## Development server
