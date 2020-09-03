@@ -23,11 +23,6 @@ export class ProductionByMonthGraphComponent implements OnInit {
 
   async ngOnInit() {
     try {
-      this.initPlot();
-    } catch (error) {
-      console.error(error);
-    }
-    try {
       this.figure = await this.getGraphFigure();
       this.initPlot();
     } catch (error) {

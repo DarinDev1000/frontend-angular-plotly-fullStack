@@ -72,13 +72,20 @@ export class ProductionByWeekGraphComponent implements OnInit {
     this.data = this.figure.data;
 
     // the config
-    try {
-      this.config = this.figure.config;
-    } catch (error) {
-      this.config = {
+    this.config = {
+        staticPlot: true,
+        // displayModeBar: false,
         responsive: true
       };
-    }
+    // try {
+    //   this.config = this.figure.config;
+    // } catch (error) {
+    //   this.config = {
+    //     staticPlot: true,
+    //     displayModeBar: false,
+    //     responsive: true
+    //   };
+    // }
 
     if (this.data !== undefined && this.layout) {
       // Plotly.newPlot(this.plotContainer.nativeElement, this.data, this.layout, this.config);
