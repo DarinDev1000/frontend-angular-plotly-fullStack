@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef, SimpleChanges } from '@angular/core';
 import axios from 'axios';
 
+// import * as Plotly from 'plotly.js';
+// import {Config, Data, Layout} from 'plotly.js';
 declare const Plotly: any;
 
 @Component({

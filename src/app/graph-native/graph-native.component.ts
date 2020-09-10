@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, SimpleChanges } from '@angular/core';
 
+// import * as Plotly from 'plotly.js';
+// import { Config, Data, Layout } from 'plotly.js';
 declare const Plotly: any;
 
 @Component({
